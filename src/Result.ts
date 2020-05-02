@@ -8,14 +8,14 @@ export class Result {
         return new Err<E>(error)
     }
 
-    static switch<T, E>(result: IResult<T, E>) {
-        return <FT, FE>({
-            ok,
-            err,
-        }: {
-            ok: (value: T) => FT
-            err: (error: E) => FE
-        }) => {
+    static switch<T, E, FT, FE>({
+        ok,
+        err,
+    }: {
+        ok: (value: T) => FT
+        err: (error: E) => FE
+    }) {
+        return (result: IResult<T, E>) => {
             return result.isOk
                 ? ok(result.valueOrError)
                 : err(result.valueOrError)
@@ -47,14 +47,14 @@ export class Result {
 export type IResult<T, E> = Ok<T> | Err<E>
 
 export abstract class AbsResult<T, E> {
-    abstract isOk: boolean
-    abstract valueOrError: T | E
+    abstract readonly isOk: boolean
+    abstract readonly valueOrError: T | E
     // abstract getOrNull(): T | null
 }
 
 export class Ok<T> extends AbsResult<T, any> {
-    isOk: true = true
-    valueOrError: T
+    readonly isOk: true = true
+    readonly valueOrError: T
 
     constructor(valueOrError: T) {
         super()
@@ -67,8 +67,8 @@ export class Ok<T> extends AbsResult<T, any> {
 }
 
 export class Err<E> extends AbsResult<any, E> {
-    isOk: false = false
-    valueOrError: E
+    readonly isOk: false = false
+    readonly valueOrError: E
 
     constructor(valueOrError: E) {
         super()

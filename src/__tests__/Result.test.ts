@@ -1,5 +1,6 @@
 import { expectType } from 'tsd'
 import { IResult, Result } from '..'
+import { P } from '../Pipe'
 
 const okValue = 'Succeeded'
 const errorMessage = 'Error Message'
@@ -13,7 +14,10 @@ test('result value', () => {
 
     expectType<IResult<string, Error>[]>([resOk, resErr])
 
+    expect(resOk.isOk).toBeTruthy()
     expect(resOk.valueOrError).toBe(okValue)
+
+    expect(resErr.isOk).toBeFalsy()
     expect(resErr.valueOrError).toBeInstanceOf(Error)
     expect((resErr.valueOrError as Error).message).toBe(errorMessage)
 })
@@ -22,14 +26,17 @@ test('switch', () => {
     const [resOk, resErr] = pair()
 
     const fn = (res: IResult<string, Error>) =>
-        Result.switch(res)({
-            ok: (value) => {
-                return value.toUpperCase()
-            },
-            err: (error) => {
-                return error.message.length
-            },
-        })
+        P(
+            res,
+            Result.switch({
+                ok: (value) => {
+                    return value.toUpperCase()
+                },
+                err: (error) => {
+                    return error.message.length
+                },
+            }),
+        )
 
     const swOk = fn(resOk)
     expectType<string | number>(swOk)
@@ -43,14 +50,17 @@ test('switch - throw', async () => {
     const [resOk, resErr] = pair()
 
     const fn = (res: IResult<string, Error>) =>
-        Result.switch(res)({
-            ok: (value) => {
-                return value.toUpperCase()
-            },
-            err: (error) => {
-                throw error
-            },
-        })
+        P(
+            res,
+            Result.switch({
+                ok: (value) => {
+                    return value.toUpperCase()
+                },
+                err: (error) => {
+                    throw error
+                },
+            }),
+        )
 
     const swOk = fn(resOk)
     expectType<string>(swOk)
