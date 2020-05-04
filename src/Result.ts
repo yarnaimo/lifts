@@ -55,10 +55,12 @@ export abstract class AbsResult<T, E> {
 export class Ok<T> extends AbsResult<T, any> {
     readonly isOk: true = true
     readonly valueOrError: T
+    readonly value: T
 
     constructor(valueOrError: T) {
         super()
         this.valueOrError = valueOrError
+        this.value = valueOrError
     }
 
     // getOrNull(): T {
@@ -69,10 +71,12 @@ export class Ok<T> extends AbsResult<T, any> {
 export class Err<E> extends AbsResult<any, E> {
     readonly isOk: false = false
     readonly valueOrError: E
+    readonly error: E
 
     constructor(valueOrError: E) {
         super()
         this.valueOrError = valueOrError
+        this.error = valueOrError
     }
 
     // getOrNull(): null {

@@ -16,9 +16,15 @@ test('result value', () => {
 
     expect(resOk.isOk).toBeTruthy()
     expect(resOk.valueOrError).toBe(okValue)
+    if (resOk.isOk) {
+        expect(resOk.value).toBe(okValue)
+    }
 
     expect(resErr.isOk).toBeFalsy()
     expect(resErr.valueOrError).toBeInstanceOf(Error)
+    if (!resErr.isOk) {
+        expect(resErr.error).toBeInstanceOf(Error)
+    }
     expect((resErr.valueOrError as Error).message).toBe(errorMessage)
 })
 
