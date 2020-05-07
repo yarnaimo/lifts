@@ -28,4 +28,4 @@ config
 coverage
 node_modules
 public
-sw.*
+sw.js

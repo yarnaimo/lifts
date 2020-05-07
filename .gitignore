@@ -29,4 +29,4 @@ coverage
 dist/**/*
 node_modules
 public
-sw.*
+sw.js
