@@ -1,4 +1,5 @@
 export * from './Do'
+export * from './FilterNonNull'
 export * from './Map'
 export * from './Pipe'
 export * from './Result'
