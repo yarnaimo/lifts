@@ -15,11 +15,11 @@
     "ts-node": "ts-node"
   },
   "dependencies": {
-    "@sindresorhus/is": "^2.1.1",
+    "@sindresorhus/is": "^3.0.0",
     "p-map": "^4.0.0"
   },
   "devDependencies": {
-    "@yarnaimo/tss": "^0.2.0",
-    "tsd": "^0.11.0"
+    "@yarnaimo/tss": "^0.3.1",
+    "tsd": "^0.13.1"
   }
 }
