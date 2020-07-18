@@ -1,6 +1,5 @@
 import { expectType } from 'tsd'
-import { IResult, Result } from '..'
-import { P } from '../Pipe'
+import { IResult, P, Result } from '..'
 
 const okValue = 'Succeeded'
 const errorMessage = 'Error Message'

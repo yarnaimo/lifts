@@ -1,5 +1,5 @@
 import { expectType } from 'tsd'
-import { FilterNonNull } from '../FilterNonNull'
+import { FilterNonNull } from '..'
 
 test('FilterNonNull', () => {
     const array = ['a', null, 0, false, undefined]

@@ -1,5 +1,5 @@
 import { expectType } from 'tsd'
-import { As } from '../As'
+import { As } from '..'
 
 test('As', () => {
     const result = As<string>('a')
