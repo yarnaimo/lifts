@@ -5,9 +5,9 @@
 ## Install
 
 ```sh
-yarn add lifts
+yarn add lifts remeda
 # or
-npm i -S lifts
+npm i -S lifts remeda
 ```
 
 ## Usage
